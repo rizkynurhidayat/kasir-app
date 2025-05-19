@@ -20,7 +20,7 @@ class ProductController extends Controller
         $request->validate([
             'nama' => 'required',
             'harga' => 'required|numeric',
-            'stok' => 'required|integer',
+            // 'stok' => 'required|integer',
         ]);
 
         Product::create($request->all());
@@ -35,7 +35,7 @@ class ProductController extends Controller
         $request->validate([
             'nama' => 'required',
             'harga' => 'required|numeric',
-            'stok' => 'required|integer',
+            // 'stok' => 'required|integer',
         ]);
 
         $product->update($request->all());

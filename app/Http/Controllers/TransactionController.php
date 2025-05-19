@@ -13,7 +13,17 @@ class TransactionController extends Controller
         $request->validate([
             'customer_id' => 'required|exists:customers,id'
         ]);
+        $customerId = $request->customer_id;
+        $customerName = $request->customer_name;
 
+        if (empty($customerId)) {
+            // Buat customer baru dengan nama "Unknown" jika belum ada
+            $customer = Customer::firstOrCreate(
+                ['nama' => $customerName],
+                ['nama' => $customerName]
+            );
+            $customerId = $customer->id;
+        }
         $carts = Cart::with('product')->get();
 
         if ($carts->isEmpty()) {

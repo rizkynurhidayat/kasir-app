@@ -22,6 +22,7 @@ class CustomerController extends Controller
         'telepon'=> 'required',
         'alamat'=> 'required',
     ]);
+       
         Customer::create($request->all());
         return redirect()->route('customers.index')->with('success', 'Customer ditambahkan!');
     }

@@ -1,23 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h2>Edit Produk</h2>
-        <form action="{{ route('products.update', $product->id) }}" method="POST" style="background-color: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
-            @csrf @method('PUT')
-            <div class="form-group">
-                <label for="nama">Nama Produk</label>
-                <input type="text" name="nama" id="nama" value="{{ $product->nama }}" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Edit Produk</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('products.update', $product->id) }}" method="POST">
+                            @csrf @method('PUT')
+                            <div class="mb-3">
+                                <label for="nama" class="form-label">Nama Produk</label>
+                                <input type="text" class="form-control" name="nama" id="nama" value="{{ $product->nama }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="harga" class="form-label">Harga</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">Rp</span>
+                                    <input type="number" class="form-control" name="harga" id="harga" value="{{ $product->harga }}" required>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <a href="{{ route('products.index') }}" class="btn btn-secondary">
+                                    <i class="fas fa-arrow-left"></i> Kembali
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Simpan Perubahan
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="harga">Harga</label>
-                <input type="number" name="harga" id="harga" value="{{ $product->harga }}" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
-            </div>
-            <div class="form-group">
-                <label for="stok">Stok</label>
-                <input type="number" name="stok" id="stok" value="{{ $product->stok }}" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
-            </div>
-            <button type="submit" style="background-color: #3498db; color: white; padding: 10px 15px; border: none; border-radius: 5px;">Update</button>
-        </form>
+        </div>
     </div>
 @endsection
